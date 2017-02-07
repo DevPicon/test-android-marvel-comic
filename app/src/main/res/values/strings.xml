@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">NextDots Test Android - Marvel Comic</string>
+    <string name="sample_comic_name">Lorna the Jungle Girl (1954) #6</string>
+    <string name="sample_comic_price">USD 200.00</string>
+</resources>
