@@ -1,5 +1,21 @@
 <resources>
     <string name="app_name">NextDots Test Android - Marvel Comic</string>
-    <string name="sample_comic_name">Lorna the Jungle Girl (1954) #6</string>
+    <string name="sample_comic_name">Brilliant (2011) #7</string>
     <string name="sample_comic_price">USD 200.00</string>
+    <string name="subtitle_label_description">Description</string>
+    <string name="sample_comic_description">From the award-winning creators behind ULTIMATE SPIDER-MAN and AVENGERS ASSEMBLE comes the shocking creator-owned series that gives you something very different than a regular superhero comic and asks the question: How would the world react if a group of brilliant college students actually discovered the secret of superpowers? Well now, the secret is out!</string>
+    <string name="subtitle_label_onsale_date">On Sale Date</string>
+    <string name="sample_comic_onsale_date">31/12/2020</string>
+    <string name="subtitle_label_page_count">Page Count</string>
+    <string name="sample_comic_page_count">136</string>
+    <string name="subtitle_label_series">Series</string>
+    <string name="sample_comic_series">Power Man and Iron Fist (2016 - Present)</string>
+    <string name="subtitle_label_creators">Creators</string>
+    <string name="sample_creator_name">Russ Heath</string>
+    <string name="sample_creator_role">penciller (cover)</string>
+    <string name="subtitle_label_characters">Characters</string>
+    <string name="no_data_available">No data available</string>
+    <string name="message_not_available">Not available</string>
+    <string name="message_soldout">Sold out</string>
+    <string name="format_usd">USD %s</string>
 </resources>

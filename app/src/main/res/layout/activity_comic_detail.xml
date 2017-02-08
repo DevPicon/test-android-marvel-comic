@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_comic_detail"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="pe.devpicon.android.marvelcomic.activities.detail.ComicDetailActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.5"
+        android:background="@android:color/black">
+
+        <ImageView
+            android:id="@+id/img_comic_detail_cover"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerInside"
+            android:src="@drawable/sample_cover"/>
+
+        <TextView
+            android:id="@+id/txt_comic_detail_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginLeft="@dimen/activity_horizontal_margin"
+            android:layout_marginRight="@dimen/activity_horizontal_margin"
+            android:text="@string/sample_comic_price"
+            android:textAppearance="?android:textAppearanceMediumInverse"/>
+
+        <TextView
+            android:id="@+id/txt_comic_detail_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@id/txt_comic_detail_price"
+            android:layout_marginLeft="@dimen/activity_horizontal_margin"
+            android:layout_marginRight="@dimen/activity_horizontal_margin"
+            android:text="@string/sample_comic_name"
+            android:textAppearance="?android:textAppearanceLargeInverse"
+            />
+
+    </RelativeLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+        android:layout_marginRight="@dimen/activity_horizontal_margin"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+
+        android:layout_weight="1">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <!--Descripción-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/activity_vertical_margin_8dp"
+                    android:layout_marginTop="@dimen/activity_vertical_margin_8dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/subtitle_label_description"/>
+
+
+                    <TextView
+                        android:id="@+id/txt_comic_detail_description"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/activity_vertical_margin_8dp"
+                        android:text="@string/sample_comic_description"
+                        android:textAppearance="?android:textAppearanceMedium"/>
+                </LinearLayout>
+
+
+                <!--Fecha de venta-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/activity_vertical_margin_8dp"
+                    android:layout_marginTop="@dimen/activity_vertical_margin_8dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/subtitle_label_onsale_date"/>
+
+
+                    <TextView
+                        android:id="@+id/txt_comic_detail_onsale_date"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/activity_vertical_margin_8dp"
+                        android:text="@string/sample_comic_onsale_date"
+                        android:textAppearance="?android:textAppearanceMedium"/>
+                </LinearLayout>
+
+
+                <!--Número de páginas-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/activity_vertical_margin_8dp"
+                    android:layout_marginTop="@dimen/activity_vertical_margin_8dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/subtitle_label_page_count"/>
+
+
+                    <TextView
+                        android:id="@+id/txt_comic_detail_pagecount"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/activity_vertical_margin_8dp"
+                        android:text="@string/sample_comic_page_count"
+                        android:textAppearance="?android:textAppearanceMedium"/>
+                </LinearLayout>
+
+                <!--Lista de series-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/activity_vertical_margin_8dp"
+                    android:layout_marginTop="@dimen/activity_vertical_margin_8dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/subtitle_label_series"/>
+
+
+                    <TextView
+                        android:id="@+id/txt_comic_detail_series"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/activity_vertical_margin_8dp"
+                        android:text="@string/sample_comic_series"
+                        android:textAppearance="?android:textAppearanceMedium"/>
+                </LinearLayout>
+
+                <!--Lista de creadores-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/activity_vertical_margin_8dp"
+                    android:layout_marginTop="@dimen/activity_vertical_margin_8dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/subtitle_label_creators"/>
+
+
+                    <!--<android.support.v7.widget.RecyclerView-->
+                        <!--android:id="@+id/creators_recycler_view"-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="wrap_content">-->
+
+                    <!--</android.support.v7.widget.RecyclerView>-->
+                    <TextView
+                        android:id="@+id/txt_comic_detail_creators"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/activity_vertical_margin_8dp"
+                        android:text="@string/sample_comic_series"
+                        android:textAppearance="?android:textAppearanceMedium"/>
+                </LinearLayout>
+
+                <!--Lista de personajes-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/activity_vertical_margin_8dp"
+                    android:layout_marginTop="@dimen/activity_vertical_margin_8dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/subtitle_label_characters"/>
+
+
+                    <!--<android.support.v7.widget.RecyclerView-->
+                        <!--android:id="@+id/characters_recycler_view"-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="wrap_content">-->
+
+                    <!--</android.support.v7.widget.RecyclerView>-->
+
+                    <TextView
+                        android:id="@+id/txt_comic_detail_characters"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/activity_vertical_margin_8dp"
+                        android:text="@string/sample_comic_series"
+                        android:textAppearance="?android:textAppearanceMedium"/>
+                </LinearLayout>
+
+
+
+
+            </LinearLayout>
+
+
+        </ScrollView>
+
+    </FrameLayout>
+
+</LinearLayout>

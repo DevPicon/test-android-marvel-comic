@@ -1,8 +1,9 @@
-package pe.devpicon.android.marvelcomic
+package pe.devpicon.android.marvelcomic.taks
 
 import android.os.AsyncTask
 import android.util.Log
 import org.json.JSONObject
+import pe.devpicon.android.marvelcomic.entities.Comic
 import pe.devpicon.android.marvelcomic.interfaces.Operations
 import java.io.BufferedReader
 import java.io.InputStream
@@ -13,16 +14,14 @@ import java.net.URL
 /**
  * Created by Armando on 7/2/2017.
  */
-class ComicTask : AsyncTask<String, Void, String>() {
+class ComicListTask : AsyncTask<String, Void, String>() {
 
-    var ops : Operations.RequiredOps? = null
+    var ops: Operations.RequiredOps? = null
 
     override fun doInBackground(vararg p0: String?): String? {
 
-        var comicJson : String? = null
-
+        var comicJson: String? = null
         val url = URL(COMPLETE_URL)
-
         val conn: HttpURLConnection = url.openConnection() as HttpURLConnection
         conn.requestMethod = "GET"
         conn.connect()
@@ -41,13 +40,10 @@ class ComicTask : AsyncTask<String, Void, String>() {
             }
 
             reader.close()
-
             comicJson = buffer.toString()
-
             conn.disconnect()
 
         }
-
 
         return comicJson
     }
@@ -55,12 +51,9 @@ class ComicTask : AsyncTask<String, Void, String>() {
     override fun onPostExecute(result: String?) {
         super.onPostExecute(result)
 
-        if( result != null){
-
-            val comics : MutableList<Comic> = convertJsonToComicObject(result)
-
+        if (result != null) {
+            val comics: MutableList<Comic> = convertJsonToComicObject(result)
             Log.d(javaClass.simpleName, "List size: ${comics.size}")
-
             ops?.showComics(comics)
 
         }
@@ -83,10 +76,9 @@ class ComicTask : AsyncTask<String, Void, String>() {
         for (i in 0..(results.length() - 1)) {
             val item = results.getJSONObject(i)
 
-            val comic = Comic(item.getString("title"),
-                    item.getJSONArray("prices").getJSONObject(0).getDouble("price"),
-                    item.getJSONObject("thumbnail").getString("path")
-                            + item.getJSONObject("thumbnail").getString("extension"))
+            val comic = Comic(id = item.getInt("id"), name = item.getString("title"),
+                    price = item.getJSONArray("prices").getJSONObject(0).getDouble("price"),
+                    imageURL = "${item.getJSONObject("thumbnail").getString("path")}.${item.getJSONObject("thumbnail").getString("extension")}")
 
             comicList.add(comic)
 
@@ -103,7 +95,7 @@ class ComicTask : AsyncTask<String, Void, String>() {
         private val RANDOM_WORD = "armando"
         private val HASH = "7f3db60eab45a2c204d69b8aafdcfbc9"
         private val COMIC_BASE_URL = "https://gateway.marvel.com/v1/public/comics"
-        private val COMPLETE_URL = "$COMIC_BASE_URL?ts=$RANDOM_WORD&apikey=$PUBLIC_API_KEY&hash=$HASH"
+        private val COMPLETE_URL = "${COMIC_BASE_URL}?ts=${RANDOM_WORD}&apikey=${PUBLIC_API_KEY}&hash=${HASH}"
     }
 
 }
