@@ -10,7 +10,7 @@ import kotlinx.android.synthetic.main.comic_item.view.*
 /**
  * Created by apico on 7/02/2017.
  */
-class ComicAdapter(val items: List<Comic>) : RecyclerView.Adapter<ComicAdapter.ComicViewHolder>() {
+class ComicAdapter(var items: List<Comic>) : RecyclerView.Adapter<ComicAdapter.ComicViewHolder>() {
 
     override fun onBindViewHolder(holder: ComicViewHolder, position: Int) {
         holder.bindComic(items[position])
