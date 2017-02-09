@@ -26,6 +26,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
+            android:layout_toRightOf="@+id/btn_favourite"
             android:layout_marginLeft="@dimen/activity_horizontal_margin"
             android:layout_marginRight="@dimen/activity_horizontal_margin"
             android:text="@string/sample_comic_price"
@@ -36,11 +37,23 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_above="@id/txt_comic_detail_price"
+            android:layout_toRightOf="@+id/btn_favourite"
             android:layout_marginLeft="@dimen/activity_horizontal_margin"
             android:layout_marginRight="@dimen/activity_horizontal_margin"
             android:text="@string/sample_comic_name"
             android:textAppearance="?android:textAppearanceLargeInverse"
             />
+
+
+        <ImageButton
+            android:layout_above="@id/txt_comic_detail_price"
+            android:id="@+id/btn_favourite"
+            android:src="@drawable/star_outline"
+            android:layout_marginLeft="@dimen/activity_horizontal_margin"
+            android:tint="@android:color/white"
+            android:background="@android:color/transparent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
 
     </RelativeLayout>
 

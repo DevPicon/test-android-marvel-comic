@@ -1,6 +1,7 @@
 package pe.devpicon.android.marvelcomic.activities.list
 
 import android.os.Bundle
+import android.os.Parcelable
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.util.Log
@@ -11,10 +12,27 @@ import org.jetbrains.anko.toast
 import pe.devpicon.android.marvelcomic.entities.Comic
 import pe.devpicon.android.marvelcomic.taks.ComicListTask
 import pe.devpicon.android.marvelcomic.R
+import pe.devpicon.android.marvelcomic.activities.BaseActivity
 import pe.devpicon.android.marvelcomic.activities.detail.ComicDetailActivity
 import pe.devpicon.android.marvelcomic.interfaces.Operations
+import pe.devpicon.android.marvelcomic.taks.ComicSearchTask
+import java.io.Serializable
 
-class MainActivity : AppCompatActivity(), Operations.RequiredOps {
+class MainActivity : BaseActivity(), Operations.RequiredOps, View.OnClickListener {
+    override fun onClick(v: View?) {
+
+        when(v?.id){
+            R.id.btn_search -> {
+                val comicSearchTask = ComicSearchTask()
+                comicSearchTask.context = this
+                comicSearchTask.view = this
+                comicSearchTask.execute(edt_search.text.toString())
+            }
+        }
+
+
+    }
+
     override fun showComics(comicList: List<Comic>) {
         Log.d(javaClass.simpleName, "showComics")
         comicAdapter?.items = comicList
@@ -35,7 +53,7 @@ class MainActivity : AppCompatActivity(), Operations.RequiredOps {
 
         comicAdapter = ComicAdapter(null, object : ComicAdapter.OnItemClickListener {
             override fun invoke(comic: Comic) {
-                toast("${comic.id} ${comic.name}")
+                toast("${comic.id} ${comic.title}")
                 var intent = intentFor<ComicDetailActivity>()
                 intent.putExtra("comicId", comic.id)
                 startActivity(intent)
@@ -46,6 +64,9 @@ class MainActivity : AppCompatActivity(), Operations.RequiredOps {
         comic_recyclerview.layoutManager = LinearLayoutManager(this)
 
         checkIfDataIsAvailable()
+
+
+        btn_search.setOnClickListener(this)
 
     }
 
@@ -64,12 +85,17 @@ class MainActivity : AppCompatActivity(), Operations.RequiredOps {
         super.onResume()
 
         val task = ComicListTask()
-        task.ops = this
+        task.context = this
+        task.view = this
         task.execute("")
+
+
     }
 
 
 
 
 }
+
+
 

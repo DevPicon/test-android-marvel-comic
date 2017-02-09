@@ -24,6 +24,14 @@ class ComicAdapter(var items: List<Comic>?, val itemClick: OnItemClickListener) 
         return ComicViewHolder(view, itemClick)
     }
 
+    fun getItem(position: Int): Comic? {
+        if(items != null && items!!.size > 0){
+            items!!.get(position)
+        }
+
+        return null
+    }
+
     override fun getItemCount(): Int = items?.size ?: 0
 
     override fun getItemId(position: Int): Long  = items?.get(position)?.id as Long? ?: 0
@@ -36,12 +44,12 @@ class ComicAdapter(var items: List<Comic>?, val itemClick: OnItemClickListener) 
                     Log.d(javaClass.simpleName, comic.toString())
 
                     Glide.with(itemView.context)
-                            .load(imageURL)
+                            .load(thumbnailUrl)
                             .fitCenter()
                             .override(48, 48)
                             .into(itemView.img_comic_cover)
 
-                    itemView.txt_comic_name.text = name
+                    itemView.txt_comic_name.text = title
                     itemView.txt_comic_price.text = if (price > 0) price.toString() else itemView.context.getString(R.string.message_not_available)
                     itemView.setOnClickListener { itemClick(this) }
                 }

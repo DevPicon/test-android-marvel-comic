@@ -11,16 +11,23 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".activities.list.MainActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
 
-                <category android:name="android.intent.category.LAUNCHER"/>
-            </intent-filter>
         </activity>
-        <activity
+        <activity android:theme="@style/AppThemeTransparent"
             android:name=".activities.detail.ComicDetailActivity"
             android:parentActivityName=".activities.list.MainActivity">
         </activity>
+        <activity android:name=".activities.start.StartActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+        <activity android:name=".activities.start.SignInActivity">
+        </activity>
+
+
+
     </application>
 
 </manifest>

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">NextDots Test Android - Marvel Comic</string>
+    <string name="app_name">Marvel Comics Gallery</string>
     <string name="sample_comic_name">Brilliant (2011) #7</string>
     <string name="sample_comic_price">USD 200.00</string>
     <string name="subtitle_label_description">Description</string>
@@ -18,4 +18,8 @@
     <string name="message_not_available">Not available</string>
     <string name="message_soldout">Sold out</string>
     <string name="format_usd">USD %s</string>
+    <string name="label_signin">Sign In</string>
+    <string name="menu_search">Search</string>
+    <string name="search_hint">Insert comic name</string>
+    <string name="label_search">Search</string>
 </resources>

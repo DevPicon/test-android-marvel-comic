@@ -5,13 +5,9 @@ import android.os.AsyncTask
 import android.util.Log
 import org.json.JSONArray
 import org.json.JSONObject
-import pe.devpicon.android.marvelcomic.R
-import pe.devpicon.android.marvelcomic.activities.list.MainActivity
-import pe.devpicon.android.marvelcomic.data.DatabaseManager
 import pe.devpicon.android.marvelcomic.entities.Characters
 import pe.devpicon.android.marvelcomic.entities.Comic
 import pe.devpicon.android.marvelcomic.entities.Creator
-import pe.devpicon.android.marvelcomic.interfaces.BaseView
 import pe.devpicon.android.marvelcomic.interfaces.Operations
 import java.io.BufferedReader
 import java.io.InputStream
@@ -20,9 +16,9 @@ import java.net.HttpURLConnection
 import java.net.URL
 
 /**
- * Created by Armando on 7/2/2017.
+ * Created by Armando on 9/2/2017.
  */
-class ComicListTask : AsyncTask<String, Void, String>() {
+class ComicSearchTask : AsyncTask<String, Void, String>() {
 
     var view: Operations.RequiredOps? = null
     var context: Context? = null
@@ -33,10 +29,12 @@ class ComicListTask : AsyncTask<String, Void, String>() {
         view?.showProgressDialog()
     }
 
-    override fun doInBackground(vararg p0: String?): String? {
-
+    override fun doInBackground(vararg params: String?): String? {
         var comicJson: String? = null
-        val url = URL(COMPLETE_URL)
+
+        val term = params.get(0)?:""
+
+        val url = URL(buildSearchURL(term))
         val conn: HttpURLConnection = url.openConnection() as HttpURLConnection
         conn.requestMethod = "GET"
         conn.connect()
@@ -119,14 +117,15 @@ class ComicListTask : AsyncTask<String, Void, String>() {
 
     }
 
+    fun buildSearchURL(searchTerm: String): String = "${COMIC_BASE_URL}?titleStartsWith=${searchTerm}&ts=${RANDOM_WORD}&apikey=${PUBLIC_API_KEY}&hash=${HASH}"
+
     companion object {
         private val PUBLIC_API_KEY = "a953888a4098cff50b054c9375839786"
         private val RANDOM_WORD = "armando"
         private val HASH = "7f3db60eab45a2c204d69b8aafdcfbc9"
         private val COMIC_BASE_URL = "https://gateway.marvel.com/v1/public/comics"
-        private val COMPLETE_URL = "${COMIC_BASE_URL}?ts=${RANDOM_WORD}&apikey=${PUBLIC_API_KEY}&hash=${HASH}"
+       // private val COMPLETE_URL = "${COMIC_BASE_URL}?ts=${RANDOM_WORD}&apikey=${PUBLIC_API_KEY}&hash=${HASH}"
     }
-
 
 
     private fun getImageURL(jsonArray: JSONArray?): String? {
@@ -136,33 +135,6 @@ class ComicListTask : AsyncTask<String, Void, String>() {
                     imageJsonObject.getString("extension"))
         }
         return ""
-    }
-
-    private fun getCharacterText(characters: List<Characters>?): String {
-        Log.d(javaClass.simpleName, "getCharacterText")
-        var characterText:String = context!!.getString(R.string.message_not_available)
-        if(characters != null&& characters.size > 0){
-            for(i in 0..(characters.size - 1) ){
-                val character = characters.get(i)
-                characterText+= "${character.name}\n"
-            }
-        }
-
-        return characterText
-    }
-
-    // TODO: Provisorio
-    private fun getCreatorsText(creators: List<Creator>?): String {
-        Log.d(javaClass.simpleName, "getCreatorsText")
-        var creatorsText:String = context!!.getString(R.string.message_not_available)
-        if(creators != null && creators.size > 0){
-            for(i in 0..(creators.size - 1) ){
-                val creator = creators.get(i)
-                creatorsText+= "${creator.name} (${creator.role}) \n"
-            }
-        }
-
-        return creatorsText
     }
 
     private fun getCharacterList(characters: JSONObject): MutableList<Characters>? {
@@ -204,4 +176,3 @@ class ComicListTask : AsyncTask<String, Void, String>() {
 
 
 }
-

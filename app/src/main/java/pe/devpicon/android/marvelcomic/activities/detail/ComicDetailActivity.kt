@@ -2,8 +2,12 @@ package pe.devpicon.android.marvelcomic.activities.detail
 
 import android.app.ProgressDialog
 import android.os.Bundle
+import android.os.Parcelable
+import android.support.v4.content.ContextCompat
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
+import android.view.MotionEvent
+import android.view.View
 import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.activity_comic_detail.*
 import org.jetbrains.anko.activityUiThreadWithContext
@@ -11,6 +15,8 @@ import org.jetbrains.anko.doAsync
 import org.json.JSONArray
 import org.json.JSONObject
 import pe.devpicon.android.marvelcomic.R
+import pe.devpicon.android.marvelcomic.activities.BaseActivity
+import pe.devpicon.android.marvelcomic.data.DatabaseManager
 import pe.devpicon.android.marvelcomic.entities.Characters
 import pe.devpicon.android.marvelcomic.entities.Comic
 import pe.devpicon.android.marvelcomic.entities.Creator
@@ -21,13 +27,61 @@ import java.net.HttpURLConnection
 import java.net.URL
 import java.text.SimpleDateFormat
 
-class ComicDetailActivity : AppCompatActivity() {
+class ComicDetailActivity : BaseActivity(), View.OnTouchListener {
+    override fun onTouch(v: View?, event: MotionEvent?): Boolean {
+
+        if(event?.action == MotionEvent.ACTION_DOWN){
+            when(v?.id){
+                R.id.btn_favourite -> {
+                    if (favouriteComic) {
+                        if (comic != null) DatabaseManager.getInstance(this).deleteDataInDatabase(comic!!.id)
+                        unmarkFavourite()
+                        return false
+                    }else{
+                        if (comic != null) DatabaseManager.getInstance(this).insertComicIntoDatabase(comic!!)
+                        markFavouriteIcon()
+                        return false
+                    }
+                }
+            }
+        }
+        return false
+    }
+
+    var favouriteComic : Boolean = false
+
+
+    private fun unmarkFavourite() {
+        Log.d(TAG, "unmarkfavourite")
+        val drawable = getDrawable(R.drawable.star_outline)
+        drawable.setTint(ContextCompat.getColor(this, R.color.white))
+        btn_favourite.setImageDrawable(drawable)
+        favouriteComic = false
+    }
+
+    private fun markFavouriteIcon() {
+        Log.d(TAG, "markfavourite")
+        val drawable = getDrawable(R.drawable.star)
+        drawable.setTint(ContextCompat.getColor(this, R.color.yellow))
+        btn_favourite.setImageDrawable(drawable)
+        favouriteComic = true
+    }
+
+    val TAG: String = javaClass.simpleName
+    private var comic: Comic? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_comic_detail)
 
+        btn_favourite.setOnTouchListener(this)
+
         val comicId = intent.getIntExtra("comicId", 0)
+
+        Log.d(TAG, comic.toString())
+
+        val cursor = DatabaseManager.getInstance(this).queryComicById(comicId)
+        if(cursor != null && cursor!!.count > 0) markFavouriteIcon()
 
 
         if (comicId != 0) {
@@ -67,12 +121,12 @@ class ComicDetailActivity : AppCompatActivity() {
 
                     if (item != null) {
                         Log.d(javaClass.simpleName, "se obtendrán los datos desde el objeto JSON")
-                        var comic: Comic? = null
+
 
                         with(item) {
                             comic = Comic(
                                     id = getInt("id"),
-                                    name = getString("title"),
+                                    title = getString("title"),
                                     price = getJSONArray("prices").getJSONObject(0).getDouble("price"),
                                     imageURL = getImageURL(getJSONArray("images")),
                                     description = optString("description", ""),
@@ -100,7 +154,7 @@ class ComicDetailActivity : AppCompatActivity() {
                                             .load(imageURL)
                                             .fitCenter()
                                             .into(img_comic_detail_cover)
-                                    txt_comic_detail_name.text = name
+                                    txt_comic_detail_name.text = title
                                     txt_comic_detail_price.text = if (price > 0.0) getString(R.string.format_usd, price.toString()) else getString(R.string.message_soldout)
                                     txt_comic_detail_description.text = if (!description.equals("null", true)) description else getString(R.string.message_not_available)
                                     val simpleDateFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssZ")
@@ -203,15 +257,7 @@ class ComicDetailActivity : AppCompatActivity() {
 
     }
 
-    var progressDialog: ProgressDialog? = null
 
-    fun showProgressDialog() {
-        progressDialog = ProgressDialog.show(this, "Loading...", "Please wait a minute...", true)
-    }
-
-    fun dismissProgressDialog() {
-        progressDialog?.dismiss()
-    }
 
     fun generateImageURL(path: String, extension: String) = "$path.$extension"
 
