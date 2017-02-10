@@ -4,115 +4,94 @@ import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.util.Log
-import android.view.View
+import com.firebase.ui.auth.AuthUI
+import com.firebase.ui.auth.ErrorCodes
+import com.firebase.ui.auth.IdpResponse
+import com.firebase.ui.auth.ResultCodes
 import com.google.android.gms.auth.api.Auth
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
-import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.auth.api.signin.GoogleSignInResult
-import com.google.android.gms.common.ConnectionResult
-import com.google.android.gms.common.api.GoogleApiClient
-import com.google.android.gms.common.api.OptionalPendingResult
-import kotlinx.android.synthetic.main.activity_signin.*
 import org.jetbrains.anko.intentFor
+import org.jetbrains.anko.toast
 import pe.devpicon.android.marvelcomic.R
 import pe.devpicon.android.marvelcomic.activities.BaseActivity
 import pe.devpicon.android.marvelcomic.activities.list.MainActivity
-import pe.devpicon.android.marvelcomic.taks.ComicListTask
 
 /**
  * Created by Armando on 9/2/2017.
  */
-class StartActivity : BaseActivity(), GoogleApiClient.OnConnectionFailedListener, View.OnClickListener {
+class StartActivity : BaseActivity() {
 
-    private var googleApiClient: GoogleApiClient? = null
+    private var TAG: String = javaClass.simpleName
     private val RC_SIGN_IN = 9001
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_signin)
+        //setContentView(R.layout.activity_signin)
 
-        sign_in_button.setOnClickListener(this)
+        Log.d(TAG, "onCreate")
 
-        var gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).requestEmail().build()
-
-        googleApiClient = GoogleApiClient.Builder(this)
-                .enableAutoManage(this, this)
-                .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
-                .build()
-
-        Log.d(javaClass.simpleName, "onCreate ${googleApiClient.toString()}")
+        startActivityForResult(AuthUI.getInstance()
+                .createSignInIntentBuilder()
+                .setProviders(arrayListOf(
+                        AuthUI.IdpConfig.Builder(AuthUI.GOOGLE_PROVIDER).build(),
+                        AuthUI.IdpConfig.Builder(AuthUI.EMAIL_PROVIDER).build()))
+                .setIsSmartLockEnabled(false)
+                .build(), RC_SIGN_IN)
 
     }
 
 
-    override fun onStart() {
+    /*override fun onStart() {
         super.onStart()
 
-        val opr: OptionalPendingResult<GoogleSignInResult> = Auth.GoogleSignInApi.silentSignIn(googleApiClient)
-        if (opr.isDone) {
-            val result: GoogleSignInResult = opr.get()
-            handleSignInResult(result)
+        val auth = FirebaseAuth.getInstance()
+        if (auth.currentUser != null) {
+            startActivity(intentFor<MainActivity>())
+            finish()
         } else {
-            showProgressDialog()
-            opr.setResultCallback({ googleSignInResult: GoogleSignInResult ->
-                kotlin.run {
-                    dismissProgressDialog()
-                    handleSignInResult(googleSignInResult)
-                }
-            })
+            Log.d(TAG, "User is sign out")
         }
-    }
-
-
-    override fun onConnectionFailed(connectionResult: ConnectionResult) {
-        Log.d(javaClass.simpleName, "onConnectionFailed:$connectionResult");
-
-    }
-
-    override fun onClick(v: View) {
-        Log.d(javaClass.simpleName, v.id.toString())
-        when (v.id) {
-            R.id.sign_in_button -> signIn()
-        }
-    }
-
-    private fun signIn() {
-        Log.d(javaClass.simpleName, "signinMethod")
-        var signinIntent = Auth.GoogleSignInApi.getSignInIntent(googleApiClient)
-        startActivityForResult(signinIntent, RC_SIGN_IN)
-    }
+    }*/
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
         if (requestCode == RC_SIGN_IN) {
-            Log.d(javaClass.simpleName, "onActivityResult ${data.toString()}")
+            val response = IdpResponse.fromResultIntent(data)
 
-            var result: GoogleSignInResult = Auth.GoogleSignInApi.getSignInResultFromIntent(data)
+            handleSignInResult(resultCode, response)
 
-            handleSignInResult(result)
+
+
         }
     }
 
 
     // TODO Terminar de implementar el hangleSignInResult
-    private fun handleSignInResult(result: GoogleSignInResult) {
-        Log.d(javaClass.simpleName, result.isSuccess.toString())
-
-//        if (result.isSuccess()) {
-//            val account: GoogleSignInAccount? = result.signInAccount
-//            saveUserInfoInSharedPreferences(account)
+    private fun handleSignInResult(resultCode: Int, response: IdpResponse?) {
+        Log.d(TAG, resultCode.toString())
 
 
+        if (resultCode == ResultCodes.OK) {
+            startActivity(intentFor<MainActivity>())
+            finish()
+        } else {
+            if (response == null) {
+                toast(getString(R.string.sign_in_cancelled))
+                return
+            }
+            if (response.errorCode == ErrorCodes.NO_NETWORK) {
+                toast(getString(R.string.no_intent_connection))
+                return
+            }
+            if (response.errorCode == ErrorCodes.UNKNOWN_ERROR) {
+                toast(getString(R.string.unknown_error))
+                return
+            }
+            finish()
+        }
 
-            var intent = intentFor<MainActivity>()
-            startActivity(intent)
-
-
-//        } else {
-
-//            Log.d(javaClass.simpleName, "El login no fue satisfactorio")
-//        }
 
     }
 

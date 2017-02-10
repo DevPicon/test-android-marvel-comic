@@ -22,4 +22,7 @@
     <string name="menu_search">Search</string>
     <string name="search_hint">Insert comic name</string>
     <string name="label_search">Search</string>
+    <string name="sign_in_cancelled">Sign in cancelled by user</string>
+    <string name="no_intent_connection">No internet connection</string>
+    <string name="unknown_error">Unknown error</string>
 </resources>
