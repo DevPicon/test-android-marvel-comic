@@ -11,23 +11,34 @@
         android:supportsRtl="false"
         android:theme="@style/AppTheme">
         <activity android:name=".activities.list.MainActivity">
-
+        </activity>
+        <activity android:name=".activities.list.MainActivityTab"
+                  android:theme="@style/AppTheme">
         </activity>
         <activity
             android:name=".activities.detail.ComicDetailActivity"
-            android:parentActivityName=".activities.list.MainActivity"
+            android:parentActivityName=".activities.list.MainActivityTab"
+            android:theme="@style/AppThemeTransparent">
+        </activity>
+        <activity
+            android:name=".activities.favourite.FavouriteDetailActivity"
+            android:parentActivityName=".activities.list.MainActivityTab"
             android:theme="@style/AppThemeTransparent">
         </activity>
         <activity android:name=".activities.start.StartActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
+
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
         <activity android:name=".activities.start.SignInActivity">
         </activity>
-
-
+        <activity
+            android:name=".activities.profile.ProfileActivity"
+            android:parentActivityName=".activities.list.MainActivityTab"
+            android:theme="@style/AppThemeTransparent">
+        </activity>
     </application>
 
 </manifest>

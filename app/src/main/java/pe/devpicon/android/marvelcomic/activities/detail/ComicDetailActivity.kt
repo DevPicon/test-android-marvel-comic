@@ -74,6 +74,8 @@ class ComicDetailActivity : BaseActivity(), View.OnTouchListener {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_comic_detail)
 
+        setTitle("")
+
         btn_favourite.setOnTouchListener(this)
 
         val comicId = intent.getIntExtra("comicId", 0)

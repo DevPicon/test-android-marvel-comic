@@ -25,4 +25,12 @@
     <string name="sign_in_cancelled">Sign in cancelled by user</string>
     <string name="no_intent_connection">No internet connection</string>
     <string name="unknown_error">Unknown error</string>
+    <string name="nav_menu_inicio">Home</string>
+    <string name="nav_sign_out">Sign out</string>
+    <string name="nav_menu_profile">User Profile</string>
+    <string name="tab_comic_list">Comic List</string>
+    <string name="tab_comic_favourite_list">Favourites</string>
+    <string name="sample_profile_email">apiconz@gmail.com</string>
+    <string name="sample_profile_name">Armando Picón</string>
+    <string name="label_name">Name</string>
 </resources>

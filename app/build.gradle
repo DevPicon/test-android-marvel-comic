@@ -39,6 +39,7 @@ dependencies {
     //    compile "com.google.firebase:firebase-auth:10.0.1"
     compile 'com.firebaseui:firebase-ui-auth:1.1.1'
     //    compile 'com.google.android.gms:play-services-auth:10.0.1'
+    compile 'jp.wasabeef:glide-transformations:2.0.1'
 }
 repositories {
     mavenCentral()

@@ -1,4 +1,4 @@
-package pe.devpicon.android.marvelcomic.activities.list
+package pe.devpicon.android.marvelcomic.adapters
 
 import android.support.v7.widget.RecyclerView
 import android.util.Log

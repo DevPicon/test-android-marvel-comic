@@ -11,11 +11,13 @@ import com.firebase.ui.auth.ResultCodes
 import com.google.android.gms.auth.api.Auth
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInResult
+import com.google.firebase.auth.FirebaseAuth
 import org.jetbrains.anko.intentFor
 import org.jetbrains.anko.toast
 import pe.devpicon.android.marvelcomic.R
 import pe.devpicon.android.marvelcomic.activities.BaseActivity
 import pe.devpicon.android.marvelcomic.activities.list.MainActivity
+import pe.devpicon.android.marvelcomic.activities.list.MainActivityTab
 
 /**
  * Created by Armando on 9/2/2017.
@@ -30,7 +32,16 @@ class StartActivity : BaseActivity() {
         //setContentView(R.layout.activity_signin)
 
         Log.d(TAG, "onCreate")
+        val auth = FirebaseAuth.getInstance();
+        if (auth.getCurrentUser() != null) {
+            goToMainActivity()
+        } else{
+            goToLogin()
+        }
 
+    }
+
+    private fun goToLogin() {
         startActivityForResult(AuthUI.getInstance()
                 .createSignInIntentBuilder()
                 .setProviders(arrayListOf(
@@ -38,7 +49,6 @@ class StartActivity : BaseActivity() {
                         AuthUI.IdpConfig.Builder(AuthUI.EMAIL_PROVIDER).build()))
                 .setIsSmartLockEnabled(false)
                 .build(), RC_SIGN_IN)
-
     }
 
 
@@ -74,25 +84,30 @@ class StartActivity : BaseActivity() {
 
 
         if (resultCode == ResultCodes.OK) {
-            startActivity(intentFor<MainActivity>())
+            goToMainActivity()
             finish()
         } else {
             if (response == null) {
                 toast(getString(R.string.sign_in_cancelled))
-                return
+
             }
-            if (response.errorCode == ErrorCodes.NO_NETWORK) {
+            if (response!!.errorCode == ErrorCodes.NO_NETWORK) {
                 toast(getString(R.string.no_intent_connection))
-                return
+
             }
-            if (response.errorCode == ErrorCodes.UNKNOWN_ERROR) {
+            if (response!!.errorCode == ErrorCodes.UNKNOWN_ERROR) {
                 toast(getString(R.string.unknown_error))
-                return
+
             }
-            finish()
+
+            goToLogin()
         }
 
 
+    }
+
+    private fun goToMainActivity() {
+        startActivity(intentFor<MainActivityTab>())
     }
 
     private fun saveUserInfoInSharedPreferences(account: GoogleSignInAccount?) {

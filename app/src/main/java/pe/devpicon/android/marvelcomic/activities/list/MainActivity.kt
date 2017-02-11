@@ -19,6 +19,14 @@ import pe.devpicon.android.marvelcomic.taks.ComicSearchTask
 import java.io.Serializable
 
 class MainActivity : BaseActivity(), Operations.RequiredOps, View.OnClickListener {
+    override fun showComics(comicList: List<Comic>) {
+        throw UnsupportedOperationException("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+    override fun onClick(p0: View?) {
+        throw UnsupportedOperationException("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+/*
     override fun onClick(v: View?) {
 
         when(v?.id){
@@ -49,7 +57,9 @@ class MainActivity : BaseActivity(), Operations.RequiredOps, View.OnClickListene
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        /*Log.d(javaClass.simpleName, comics.size.toString())*/
+        */
+/*Log.d(javaClass.simpleName, comics.size.toString())*//*
+
 
         comicAdapter = ComicAdapter(null, object : ComicAdapter.OnItemClickListener {
             override fun invoke(comic: Comic) {
@@ -94,6 +104,7 @@ class MainActivity : BaseActivity(), Operations.RequiredOps, View.OnClickListene
 
 
 
+*/
 
 }
 
