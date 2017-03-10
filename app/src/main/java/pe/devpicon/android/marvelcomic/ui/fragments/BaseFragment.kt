@@ -1,4 +1,4 @@
-package pe.devpicon.android.marvelcomic.fragments
+package pe.devpicon.android.marvelcomic.ui.fragments
 
 import android.app.ProgressDialog
 import android.support.v4.app.Fragment

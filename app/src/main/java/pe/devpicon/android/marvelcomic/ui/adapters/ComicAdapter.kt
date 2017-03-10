@@ -1,4 +1,4 @@
-package pe.devpicon.android.marvelcomic.adapters
+package pe.devpicon.android.marvelcomic.ui.adapters
 
 import android.support.v7.widget.RecyclerView
 import android.util.Log
@@ -9,6 +9,7 @@ import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.comic_item.view.*
 import pe.devpicon.android.marvelcomic.entities.Comic
 import pe.devpicon.android.marvelcomic.R
+import pe.devpicon.android.marvelcomic.utils.loadImage
 
 /**
  * Created by apico on 7/02/2017.
@@ -16,7 +17,7 @@ import pe.devpicon.android.marvelcomic.R
 class ComicAdapter(var items: List<Comic>?, val itemClick: OnItemClickListener) : RecyclerView.Adapter<ComicAdapter.ComicViewHolder>() {
 
     override fun onBindViewHolder(holder: ComicViewHolder, position: Int) {
-        holder?.bindComic(items?.get(position))
+        holder.bindComic(items?.get(position))
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ComicViewHolder {
@@ -25,7 +26,7 @@ class ComicAdapter(var items: List<Comic>?, val itemClick: OnItemClickListener) 
     }
 
     fun getItem(position: Int): Comic? {
-        if(items != null && items!!.size > 0){
+        if(items != null && items!!.isNotEmpty()){
             items!!.get(position)
         }
 
@@ -39,16 +40,12 @@ class ComicAdapter(var items: List<Comic>?, val itemClick: OnItemClickListener) 
     class ComicViewHolder(itemView: View, val itemClick: OnItemClickListener) : RecyclerView.ViewHolder(itemView) {
 
         fun bindComic(comic: Comic?) {
+
+            var title: String = "Este es un titulo"
             if(comic != null){
                 with(comic) {
                     Log.d(javaClass.simpleName, comic.toString())
-
-                    Glide.with(itemView.context)
-                            .load(thumbnailUrl)
-                            .fitCenter()
-                            .override(48, 48)
-                            .into(itemView.img_comic_cover)
-
+                    itemView.img_comic_cover.loadImage(thumbnailUrl)
                     itemView.txt_comic_name.text = title
                     itemView.txt_comic_price.text = if (price > 0) price.toString() else itemView.context.getString(R.string.message_not_available)
                     itemView.setOnClickListener { itemClick(this) }

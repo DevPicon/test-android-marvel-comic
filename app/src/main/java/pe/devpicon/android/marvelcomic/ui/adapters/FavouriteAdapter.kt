@@ -1,4 +1,4 @@
-package pe.devpicon.android.marvelcomic.adapters
+package pe.devpicon.android.marvelcomic.ui.adapters
 
 import android.database.Cursor
 import android.support.v7.widget.RecyclerView

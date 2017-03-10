@@ -1,4 +1,4 @@
-package pe.devpicon.android.marvelcomic.activities.list
+package pe.devpicon.android.marvelcomic.ui.activities.list
 
 import android.os.Bundle
 import android.support.design.widget.NavigationView
@@ -17,10 +17,10 @@ import org.jetbrains.anko.find
 import org.jetbrains.anko.intentFor
 import org.jetbrains.anko.toast
 import pe.devpicon.android.marvelcomic.R
-import pe.devpicon.android.marvelcomic.activities.BaseActivity
-import pe.devpicon.android.marvelcomic.activities.profile.ProfileActivity
-import pe.devpicon.android.marvelcomic.fragments.favouritelist.ComicFavouriteListFragment
-import pe.devpicon.android.marvelcomic.fragments.list.ComicListFragment
+import pe.devpicon.android.marvelcomic.ui.activities.BaseActivity
+import pe.devpicon.android.marvelcomic.ui.activities.profile.ProfileActivity
+import pe.devpicon.android.marvelcomic.ui.fragments.favouritelist.ComicFavouriteListFragment
+import pe.devpicon.android.marvelcomic.ui.fragments.list.ComicListFragment
 import pe.devpicon.android.marvelcomic.utils.signOut
 
 

@@ -1,4 +1,4 @@
-package pe.devpicon.android.marvelcomic.activities.list
+package pe.devpicon.android.marvelcomic.ui.activities.list
 
 import android.os.Bundle
 import android.os.Parcelable
@@ -12,8 +12,8 @@ import org.jetbrains.anko.toast
 import pe.devpicon.android.marvelcomic.entities.Comic
 import pe.devpicon.android.marvelcomic.taks.ComicListTask
 import pe.devpicon.android.marvelcomic.R
-import pe.devpicon.android.marvelcomic.activities.BaseActivity
-import pe.devpicon.android.marvelcomic.activities.detail.ComicDetailActivity
+import pe.devpicon.android.marvelcomic.ui.activities.BaseActivity
+import pe.devpicon.android.marvelcomic.ui.activities.detail.ComicDetailActivity
 import pe.devpicon.android.marvelcomic.interfaces.Operations
 import pe.devpicon.android.marvelcomic.taks.ComicSearchTask
 import java.io.Serializable

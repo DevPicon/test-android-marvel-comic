@@ -1,4 +1,4 @@
-package pe.devpicon.android.marvelcomic.fragments.list
+package pe.devpicon.android.marvelcomic.ui.fragments.list
 
 import android.content.Intent
 import android.os.Bundle
@@ -10,10 +10,10 @@ import android.view.View
 import android.view.ViewGroup
 import kotlinx.android.synthetic.main.fragment_list.*
 import pe.devpicon.android.marvelcomic.R
-import pe.devpicon.android.marvelcomic.activities.detail.ComicDetailActivity
-import pe.devpicon.android.marvelcomic.adapters.ComicAdapter
+import pe.devpicon.android.marvelcomic.ui.activities.detail.ComicDetailActivity
+import pe.devpicon.android.marvelcomic.ui.adapters.ComicAdapter
 import pe.devpicon.android.marvelcomic.entities.Comic
-import pe.devpicon.android.marvelcomic.fragments.BaseFragment
+import pe.devpicon.android.marvelcomic.ui.fragments.BaseFragment
 import pe.devpicon.android.marvelcomic.interfaces.Operations
 import pe.devpicon.android.marvelcomic.taks.ComicSearchTask
 

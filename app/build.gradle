@@ -4,7 +4,11 @@ apply plugin: 'kotlin-android-extensions'
 
 android {
     compileSdkVersion 24
-    buildToolsVersion '23.0.3'
+    buildToolsVersion '25.0.0'
+    dexOptions {
+        maxProcessCount 2
+        javaMaxHeapSize "2g"
+    }
     defaultConfig {
         applicationId "pe.devpicon.android.marvelcomic"
         minSdkVersion 21

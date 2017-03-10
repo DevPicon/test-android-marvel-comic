@@ -6,12 +6,9 @@ import android.util.Log
 import org.json.JSONArray
 import org.json.JSONObject
 import pe.devpicon.android.marvelcomic.R
-import pe.devpicon.android.marvelcomic.activities.list.MainActivity
-import pe.devpicon.android.marvelcomic.data.DatabaseManager
 import pe.devpicon.android.marvelcomic.entities.Characters
 import pe.devpicon.android.marvelcomic.entities.Comic
 import pe.devpicon.android.marvelcomic.entities.Creator
-import pe.devpicon.android.marvelcomic.interfaces.BaseView
 import pe.devpicon.android.marvelcomic.interfaces.Operations
 import java.io.BufferedReader
 import java.io.InputStream
@@ -128,9 +125,8 @@ class ComicListTask : AsyncTask<String, Void, String>() {
     }
 
 
-
     private fun getImageURL(jsonArray: JSONArray?): String? {
-        if(jsonArray != null && jsonArray.length() > 0 ) {
+        if (jsonArray != null && jsonArray.length() > 0) {
             val imageJsonObject = jsonArray.getJSONObject(0)
             return generateImageURL(imageJsonObject.getString("path"),
                     imageJsonObject.getString("extension"))
@@ -140,11 +136,11 @@ class ComicListTask : AsyncTask<String, Void, String>() {
 
     private fun getCharacterText(characters: List<Characters>?): String {
         Log.d(javaClass.simpleName, "getCharacterText")
-        var characterText:String = context!!.getString(R.string.message_not_available)
-        if(characters != null&& characters.size > 0){
-            for(i in 0..(characters.size - 1) ){
+        var characterText: String = context!!.getString(R.string.message_not_available)
+        if (characters != null && characters.size > 0) {
+            for (i in 0..(characters.size - 1)) {
                 val character = characters.get(i)
-                characterText+= "${character.name}\n"
+                characterText += "${character.name}\n"
             }
         }
 
@@ -154,11 +150,11 @@ class ComicListTask : AsyncTask<String, Void, String>() {
     // TODO: Provisorio
     private fun getCreatorsText(creators: List<Creator>?): String {
         Log.d(javaClass.simpleName, "getCreatorsText")
-        var creatorsText:String = context!!.getString(R.string.message_not_available)
-        if(creators != null && creators.size > 0){
-            for(i in 0..(creators.size - 1) ){
+        var creatorsText: String = context!!.getString(R.string.message_not_available)
+        if (creators != null && creators.size > 0) {
+            for (i in 0..(creators.size - 1)) {
                 val creator = creators.get(i)
-                creatorsText+= "${creator.name} (${creator.role}) \n"
+                creatorsText += "${creator.name} (${creator.role}) \n"
             }
         }
 
@@ -205,3 +201,15 @@ class ComicListTask : AsyncTask<String, Void, String>() {
 
 }
 
+
+fun main(args:Array<String>){
+    var name: String? = null
+    sayHello(name)
+}
+
+
+private fun sayHello(name: String?) {
+    name?.let {
+        println("Hola $it!")
+    }
+}

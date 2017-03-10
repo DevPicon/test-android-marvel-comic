@@ -1,4 +1,4 @@
-package pe.devpicon.android.marvelcomic.fragments.favouritelist
+package pe.devpicon.android.marvelcomic.ui.fragments.favouritelist
 
 import android.content.Intent
 import android.os.Bundle
@@ -9,10 +9,10 @@ import android.view.View
 import android.view.ViewGroup
 import kotlinx.android.synthetic.main.fragment_favourites.*
 import pe.devpicon.android.marvelcomic.R
-import pe.devpicon.android.marvelcomic.activities.detail.ComicDetailActivity
-import pe.devpicon.android.marvelcomic.activities.favourite.FavouriteDetailActivity
-import pe.devpicon.android.marvelcomic.adapters.ComicAdapter
-import pe.devpicon.android.marvelcomic.adapters.FavouriteAdapter
+import pe.devpicon.android.marvelcomic.ui.activities.detail.ComicDetailActivity
+import pe.devpicon.android.marvelcomic.ui.activities.favourite.FavouriteDetailActivity
+import pe.devpicon.android.marvelcomic.ui.adapters.ComicAdapter
+import pe.devpicon.android.marvelcomic.ui.adapters.FavouriteAdapter
 import pe.devpicon.android.marvelcomic.data.DatabaseManager
 import pe.devpicon.android.marvelcomic.entities.Comic
 
@@ -37,6 +37,7 @@ class ComicFavouriteListFragment: Fragment(){
             override fun invoke(comic: Comic) {
                 var intent = Intent(activity, FavouriteDetailActivity::class.java)
                 intent.putExtra("comicId", comic.id)
+                intent.putExtra("comic", comic)
                 startActivity(intent)
             }
 

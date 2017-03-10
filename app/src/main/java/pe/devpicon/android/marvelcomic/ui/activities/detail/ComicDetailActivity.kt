@@ -1,4 +1,4 @@
-package pe.devpicon.android.marvelcomic.activities.detail
+package pe.devpicon.android.marvelcomic.ui.activities.detail
 
 import android.app.ProgressDialog
 import android.os.Bundle
@@ -15,7 +15,7 @@ import org.jetbrains.anko.doAsync
 import org.json.JSONArray
 import org.json.JSONObject
 import pe.devpicon.android.marvelcomic.R
-import pe.devpicon.android.marvelcomic.activities.BaseActivity
+import pe.devpicon.android.marvelcomic.ui.activities.BaseActivity
 import pe.devpicon.android.marvelcomic.data.DatabaseManager
 import pe.devpicon.android.marvelcomic.entities.Characters
 import pe.devpicon.android.marvelcomic.entities.Comic

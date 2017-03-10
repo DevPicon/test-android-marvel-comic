@@ -1,4 +1,4 @@
-package pe.devpicon.android.marvelcomic.activities
+package pe.devpicon.android.marvelcomic.ui.activities
 
 import android.app.ProgressDialog
 import android.support.v7.app.AppCompatActivity

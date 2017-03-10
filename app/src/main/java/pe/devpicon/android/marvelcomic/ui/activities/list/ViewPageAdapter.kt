@@ -1,4 +1,4 @@
-package pe.devpicon.android.marvelcomic.activities.list
+package pe.devpicon.android.marvelcomic.ui.activities.list
 
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager

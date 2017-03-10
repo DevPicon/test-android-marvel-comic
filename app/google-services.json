@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "53228879742",
+    "firebase_url": "https://devfestlima2016.firebaseio.com",
+    "project_id": "devfestlima2016",
+    "storage_bucket": "devfestlima2016.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:53228879742:android:94e04ddc4d4c90ab",
+        "android_client_info": {
+          "package_name": "pe.devpicon.android.marvelcomic"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "53228879742-u25loop8f1u6epu27sc7teb8jv4qhuhd.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAUTbmhJEBaQMLqU5XQlSAbru59I8tKm9o"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "53228879742-u25loop8f1u6epu27sc7teb8jv4qhuhd.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,4 +1,4 @@
-package pe.devpicon.android.marvelcomic.activities.profile
+package pe.devpicon.android.marvelcomic.ui.activities.profile
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
@@ -9,8 +9,8 @@ import jp.wasabeef.glide.transformations.CropCircleTransformation
 import kotlinx.android.synthetic.main.activity_profile.*
 import org.jetbrains.anko.intentFor
 import pe.devpicon.android.marvelcomic.R
-import pe.devpicon.android.marvelcomic.activities.BaseActivity
-import pe.devpicon.android.marvelcomic.activities.start.StartActivity
+import pe.devpicon.android.marvelcomic.ui.activities.BaseActivity
+import pe.devpicon.android.marvelcomic.ui.activities.start.StartActivity
 import pe.devpicon.android.marvelcomic.utils.signOut
 
 class ProfileActivity : BaseActivity(), View.OnClickListener {

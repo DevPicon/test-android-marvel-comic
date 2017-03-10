@@ -1,4 +1,4 @@
-package pe.devpicon.android.marvelcomic.activities.start
+package pe.devpicon.android.marvelcomic.ui.activities.start
 
 import android.content.Intent
 import android.content.SharedPreferences
@@ -15,9 +15,9 @@ import com.google.firebase.auth.FirebaseAuth
 import org.jetbrains.anko.intentFor
 import org.jetbrains.anko.toast
 import pe.devpicon.android.marvelcomic.R
-import pe.devpicon.android.marvelcomic.activities.BaseActivity
-import pe.devpicon.android.marvelcomic.activities.list.MainActivity
-import pe.devpicon.android.marvelcomic.activities.list.MainActivityTab
+import pe.devpicon.android.marvelcomic.ui.activities.BaseActivity
+import pe.devpicon.android.marvelcomic.ui.activities.list.MainActivity
+import pe.devpicon.android.marvelcomic.ui.activities.list.MainActivityTab
 
 /**
  * Created by Armando on 9/2/2017.

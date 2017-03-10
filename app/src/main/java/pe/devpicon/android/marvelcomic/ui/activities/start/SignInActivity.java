@@ -1,8 +1,7 @@
-package pe.devpicon.android.marvelcomic.activities.start;
+package pe.devpicon.android.marvelcomic.ui.activities.start;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
@@ -18,7 +17,7 @@ import com.google.android.gms.common.api.ResultCallback;
 import com.google.android.gms.common.api.Status;
 
 import pe.devpicon.android.marvelcomic.R;
-import pe.devpicon.android.marvelcomic.activities.BaseActivity;
+import pe.devpicon.android.marvelcomic.ui.activities.BaseActivity;
 
 /**
  * Created by Armando on 9/2/2017.
